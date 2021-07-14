@@ -1,46 +1,9 @@
 import React from 'react';
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box';
-import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/alurakutCommons';
-import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
-
-function ProfileSidebar(props) {
-  return (
-    <Box as="aside">
-      <img src={`https://github.com/${props.githubUser}.png`} style={{ borderRadius: '8px' }} />
-      <hr/>  
-
-      <p> 
-        <a className="boxLink" href={`https://github.com/${props.githubUser}`}>
-          @{props.githubUser}
-        </a>
-      </p>
-      <hr/>
-
-      <AlurakutProfileSidebarMenuDefault />    
-    </Box>
-  )
-}
-
-function ProfileRelationsBox(props) {
-  return (
-    <ProfileRelationsBoxWrapper>
-      <h2 className="smallTitle">{props.title} ({props.item.length})</h2>
-      <ul>
-        {props.item.map((itemAtual) => {
-          return (
-            <li key={itemAtual}>
-              <a href={`/users/${itemAtual.login}`}>
-                <img src={itemAtual.avatar_url ? itemAtual.avatar_url : itemAtual.image} />
-                <span>{itemAtual.login ? itemAtual.login : itemAtual.title}</span>
-              </a> 
-            </li>
-          );
-        })}
-      </ul>
-    </ProfileRelationsBoxWrapper>
-  )
-}
+import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/alurakutCommons';
+import { ProfileRelationsBox } from '../src/components/ProfileRelations';
+import { ProfileSidebar } from '../src/components/ProfileSidebar';
 
 export default function Home() {
   const usuarioAleatorio = 'maxsueldev';
@@ -68,8 +31,6 @@ export default function Home() {
       setguthubFollowers(completeResponse);
     }) 
   }, []);    
-
-  console.log(githubFollowers[0]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Box from '../Box';
 
-export const ProfileRelationsBoxWrapper = styled(Box)`
+const ProfileRelationsBoxWrapper = styled(Box)`
   ul {
     display: grid;
     grid-gap: 8px;
@@ -50,3 +50,23 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
     }
   }
 `;
+
+export function ProfileRelationsBox(props) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">{props.title} ({props.item.length})</h2>
+      <ul>
+        {props.item.map((itemAtual) => {
+          return (
+            <li key={itemAtual}>
+              <a href={`/users/${itemAtual.login}`}>
+                <img src={itemAtual.avatar_url ? itemAtual.avatar_url : itemAtual.image} />
+                <span>{itemAtual.login ? itemAtual.login : itemAtual.title}</span>
+              </a> 
+            </li>
+          );
+        })}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
